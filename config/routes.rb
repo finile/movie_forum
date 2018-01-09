@@ -3,4 +3,8 @@ Rails.application.routes.draw do
 
   root "movies#index"
 
+  namespace :admin do
+    root "movies#index"
+  end
+
 end
