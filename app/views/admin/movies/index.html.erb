@@ -1,1 +1,13 @@
 <h1>電影論壇後台</h1>
+
+<ul>
+  <% @movies.each do |movie| %>
+  <li>
+    <%= movie.name %>
+    <%= link_to 'show', admin_movie_path(movie) %>
+    <%= link_to 'edit', edit_admin_movie_path(movie) %>
+    <%= link_to 'delete', admin_movie_path(movie), method: :delete, data:{confrim: "are you sure?"} %>
+  </li>
+  <% end %>
+</ul>
+<%= link_to 'new move', new_admin_movie_path %>
