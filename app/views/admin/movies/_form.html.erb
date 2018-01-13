@@ -20,6 +20,11 @@
   
   <%= f.label :description, "Description" %>
   <%= f.text_area :description %>
+
+  <%= f.label :image, "Photo" %>
+  <%= image_tag @movie.image, width: '300px' if @movie.image? %>
+  <%= f.file_field :image %>
+
   
   <%= f.submit %>
 
