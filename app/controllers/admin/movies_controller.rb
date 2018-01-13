@@ -1,7 +1,7 @@
 class Admin::MoviesController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_admin
-  before_action :set_movie, only: [:show, :edit, :update]
+  before_action :set_movie, only: [:show, :edit, :update, :destroy]
 
 
   def index
@@ -39,6 +39,12 @@ class Admin::MoviesController < ApplicationController
       flash.now[:alert] = "Move was Failed to Updated"
       render :edit
     end
+  end
+
+  def destroy
+    @movie.destroy
+    redirect_to admin_movies_path
+    flash[:alert] = "Movie was Deleted"
   end
 
 
