@@ -1,6 +1,8 @@
 class Admin::MoviesController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_admin
+  before_action :set_movie, only: [:show, :edit, :update]
+
 
   def index
     @movies = Movie.all
@@ -22,7 +24,21 @@ class Admin::MoviesController < ApplicationController
   end
 
   def show
-    @movie = Movie.find(params[:id])
+    #將原本程式碼移到 private 下，命名為 set_movie
+  end
+
+  def edit
+    #將原本程式碼移到 private 下，命名為 set_movie
+  end
+
+  def update
+    if @movie.update(movie_params)
+      flash[notice] = "Moive was Successfully Updated"
+      redirect_to admin_movie_path(@movie)
+    else
+      flash.now[:alert] = "Move was Failed to Updated"
+      render :edit
+    end
   end
 
 
@@ -30,6 +46,10 @@ class Admin::MoviesController < ApplicationController
 
   def movie_params
     params.require(:movie).permit(:name, :year, :score, :description )
+  end
+
+  def set_movie
+    @movie = Movie.find(params[:id])
   end
 
 end
