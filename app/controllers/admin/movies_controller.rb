@@ -5,7 +5,7 @@ class Admin::MoviesController < ApplicationController
 
 
   def index
-    @movies = Movie.page(params[:page]).per(15)
+    @movies = Movie.page(params[:page]).per(12)
   end
 
   def new
