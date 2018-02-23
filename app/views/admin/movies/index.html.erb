@@ -1,83 +1,81 @@
-<body>
 
-<div class="wrapper">
-    <div class="sidebar" data-background-color="white" data-active-color="danger">
-      <div class="sidebar-wrapper">
-            <div class="logo">
-                <a href="" class="simple-text">
-                    電影評論網
-                </a>
-            </div>
-
-            <ul class="nav">
-                <li class="active">
-                    <a href="dashboard.html">
-                        <i class="ti-panel"></i>
-                        <p>Movie List</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="user.html">
-                        <i class="ti-user"></i>
-                        <p>User Profile</p>
-                    </a>
-                </li>
-                
-            </ul>
-      </div>
-    </div>
-
-
-    <div class="main-panel">
-        <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                  <% @movies.each do |movie| %>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                                <div class="row">
-                                    <div class="col-xs-5">
-                                      <img src="http://via.placeholder.com/500x500" class="img-responsive img-rounded">
-                                    </div>
-                                    <div class="col-xs-7">
-                                        <div class="numbers">
-                                            <p>Name: <%= movie.name %></p>
-                                            <p>Description:<%= truncate(movie.description, length:80) %></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <hr />
-                                    <div class="stats">
-                                        <ul>
-                                        <li><i class="ti-reload"></i><%= link_to 'show', admin_movie_path(movie) %></li>
-                                        <li><i class="ti-reload"></i><%= link_to 'edit', edit_admin_movie_path(movie) %></li>
-                                        <li><i class="ti-reload"></i><%= link_to 'delete', admin_movie_path(movie), method: :delete, data:{confrim: "are you sure?"} %></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <% end %>
-                </div>
-            </div>
-            <%= paginate @movies %>
+<div class="navbar-default navbar-static-side" role="navigation">
+  <div class="sidebar-collapse">
+    <ul class="nav" id="side-menu">
+      <li class="sidebar-search">
+        <div class="input-group custom-search-form">
+          <input type="text" class="form-control" placeholder="Search...">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">
+              <i class="fa fa-search"></i>
+            </button>
+          </span>
         </div>
-
-        <footer class="footer">
-            <div class="container-fluid">
-                <div class="copyright pull-right">
-                    &copy;made with by <a>Nile Wu</a>
-                </div>
-            </div>
-        </footer>
-
-     </div>
+        <!-- /input-group -->
+        </li>
+        <li>
+          <a href="index.html"><i class="fa fa-dashboard fa-fw"></i>Movies</a>
+        </li>
+        <li>
+          <a href="index.html"><i class="fa fa-dashboard fa-fw"></i>Users</a>
+        </li>
+    </ul>
+    <!-- /#side-menu -->
   </div>
+  <!-- /.sidebar-collapse -->
+</div>
+<!-- /.navbar-static-side -->
+  
+<div id="page-wrapper">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Movies</h1>
+    </div>
+  <!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+  <div class="row">
+    <% @movies.each do |movie| %>
+      <div class="col-lg-4">
+        <div class="panel panel-default">
+          <div class="card">
+            <div class="content">
 
-</body>
+              <div class="row">
+                <div class="col-xs-4">
+                  <img src="http://via.placeholder.com/500x500" class="img-responsive img-rounded">
+                </div>
+                <div class="col-xs-7">
+                  <div class="numbers">
+                    <p><b>Name:</b> <%= movie.name %></p> 
+                    <p><b>Year:</b> <%= movie.year %></p>
+                    <p><b>Sum:</b> <%= truncate movie.description, length: 50 %></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="footer">
+                <hr />
+                <div class="stats">
+                  <ul class="movie-icon">
+                    <li><%= link_to 'show', admin_movie_path(movie), class: "fa fa-eye" %></li>
+                    <li><%= link_to 'edit', edit_admin_movie_path(movie), class: "fa fa-pencil" %></li>
+                    <li><%= link_to 'delete', admin_movie_path(movie), method: :delete, data:{confrim: "are you sure?"}, class: "fa fa-trash-o" %></li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>            
+      <!-- /.panel -->
+      </div>
+    <% end %>
+    <!-- /.row -->
+  </div>
+  <%= paginate @movies %>
+</div>
+
 
 
 

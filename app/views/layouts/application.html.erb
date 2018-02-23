@@ -9,93 +9,45 @@
   </head>
 
   <body>
-    <div class="main-panel">
-      <nav class="navbar navbar-default">  
-        <div class="container-fluid">
+    <div id="wrapper">
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+            <%= link_to "Movie Forum", root_path, class: "navbar-brand" %>
+        </div>
 
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar bar1"></span>
-              <span class="icon-bar bar2"></span>
-              <span class="icon-bar bar3"></span>
-            </button>
-            <a class="navbar-brand" href="#">Dashboard</a>
-          </div>
+        <ul class="nav navbar-top-links navbar-right">
+          <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-user">
+                <% if current_user %>
+                <li><i class="fa fa-user fa-fw"></i><%= current_user.email %></li>
+                  <% if current_user.admin? %>
+                  <li><%= link_to '後台', admin_movies_path, class: "fa fa-user fa-fw" %></li>
+                  <% end %>
+                <li class="divider"></li>
+                <li><%= link_to('登出', destroy_user_session_path, method: :delete, class: "fa fa-sign-out fa-fw") %></li>
+                <li><%= link_to('修改密碼', edit_user_registration_path, class: "fa fa-gear fa-fw") %></li>
+                
+                <% else %>
+                <li><%= link_to('註冊', new_user_registration_path, class: "fa fa-sign-out fa-fw") %></li>
+                <li><%= link_to('登入', new_user_session_path, class: "fa fa-gear fa-fw" ) %></li>
 
-          
-          <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-              <% if current_user %>
-               
-              <li>
-                <a href="#">
-                  <!-- <i class="ti-panel"></i> -->
-                  <p>Hi, <%= current_user.email %></p>
-                </a>
-              </li>
-
-
-              <% if current_user.admin? %>
-              <li>
-                <a href="#">
-                  <!-- <i class="ti-panel"></i> -->
-                  <p><%= link_to '後台', admin_movies_path %></p>
-                </a>
-              </li>
               <% end %>
-
-
-    <!-- 
-              <li>
-                <a href="#">
-                  <i class="ti-panel"></i>
-                  <p class="notice"><%= notice %></p>
-                </a>
-              </li> -->
-
-         <!--      <li>
-                <a href="#">
-                  <i class="ti-panel"></i>
-                  <p class="alert"><%= alert %></p>
-                </a>
-              </li>
-     -->
-               
-              <li>
-              <a href="#">
-              <!-- <i class="ti-settings"></i> -->
-              <p><%= link_to('登出', destroy_user_session_path, method: :delete) %></p>
-              </a>
-              </li>
-
-              <li>
-              <a href="#">
-              <!-- <i class="ti-settings"></i> -->
-              <p><%= link_to('修改密碼', edit_user_registration_path) %></p>
-              </a>
-              </li>
-              <% else %>
-              <li>
-              <a href="#">
-              <!-- <i class="ti-settings"></i> -->
-              <p><%= link_to('註冊', new_user_registration_path) %></p>
-              </a>
-              </li>
-              <li>
-              <a href="#">
-              <!-- <i class="ti-settings"></i> -->
-              <p><%= link_to('登入', new_user_session_path) %></p>
-              </a>
-              </li>
-            <% end %>
-            </ul>
-          </div>
-
-         </div>
-         
+              </ul>
+              <!-- /.dropdown-user -->
+          </li>
+          <!-- /.dropdown -->
+        </ul>
       </nav>
-    </div>
+    </div>      
     <%= yield %>
   </body>
 </html>
