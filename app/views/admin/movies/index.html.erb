@@ -47,6 +47,7 @@
                 </div>
                 <div class="col-xs-7">
                   <div class="numbers">
+                    <p><b>Category:</b> <%= movie.category.name %></p> 
                     <p><b>Name:</b> <%= movie.name %></p> 
                     <p><b>Year:</b> <%= movie.year %></p>
                     <p><b>Sum:</b> <%= truncate movie.description, length: 50 %></p>

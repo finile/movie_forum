@@ -1,5 +1,6 @@
 <h1><%= @movie.name %></h1>
 <%= image_tag @movie.image, width: '600px' %>
+Category: <%= @movie.category.name %>
 Year: <%= @movie.year %>
 IMDB Score: <%= @movie.score %>
 Description: <%= @movie.description %>
