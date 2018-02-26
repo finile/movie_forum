@@ -7,10 +7,11 @@ namespace :dev do
       Movie.create!(name: FFaker::Movie.title,
         year: FFaker::Vehicle.year,
         score: "#{rand(10).to_s}",
-        description: FFaker::Lorem.paragraph
+        description: FFaker::Lorem.paragraph,
+        category: Category.all.sample
         )
     end
-    puts "have create fake restaurants"
+    puts "have create fake movies"
     puts "now you have #{Movie.count} moives data" 
   end
 end
