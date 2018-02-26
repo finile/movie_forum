@@ -14,7 +14,10 @@
         <!-- /input-group -->
         </li>
         <li>
-          <a href="index.html"><i class="fa fa-dashboard fa-fw"></i>Movies</a>
+          <%= link_to 'Movies', admin_movies_path, class: "fa fa-dashboard fa-fw" %>
+        </li>
+        <li>
+          <%= link_to 'Categories', admin_categories_path, class: "fa fa-dashboard fa-fw" %>
         </li>
         <li>
           <a href="index.html"><i class="fa fa-dashboard fa-fw"></i>Users</a>
