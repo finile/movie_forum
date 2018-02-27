@@ -42,16 +42,18 @@
       <table class="table table-striped table-bordered">
         <thead>
           <tr>
-            <th>#</th>
-            <th>Category Name</th>
+           <!--  <th>#</th> -->
+            <th>Category</th>
+            <th>Movie Numbers</th>
             <th>Function</th>
           </tr>
         </thead>
         <tbody>
           <% @categories.each do |category| %>
           <tr>
-            <th scope="row"><%= category.id %></th>
+            <!-- <th scope="row"><%= category.id %></th> -->
             <td><%= category.name %></td>
+            <td>()</td>
             <td><%= link_to 'Edit', admin_categories_path(id: category.id) %>
                 <%= link_to 'Delete', admin_category_path(category), method: :delete, data: { confirm: "Are you sure?"} %></td>
           </tr>
